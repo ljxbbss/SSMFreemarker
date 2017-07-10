@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lujx.mapper.PostInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lujx.entity.PostInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="postName" property="postName" jdbcType="VARCHAR" />
+    <result column="postCode" property="postCode" jdbcType="VARCHAR" />
+    <result column="postDesc" property="postDesc" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from postinfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lujx.entity.PostInfo" >
+    insert into postinfo (id, postName, postCode, 
+      postDesc)
+    values (#{id,jdbcType=INTEGER}, #{postName,jdbcType=VARCHAR}, #{postCode,jdbcType=VARCHAR}, 
+      #{postDesc,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lujx.entity.PostInfo" >
+    update postinfo
+    set postName = #{postName,jdbcType=VARCHAR},
+      postCode = #{postCode,jdbcType=VARCHAR},
+      postDesc = #{postDesc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, postName, postCode, postDesc
+    from postinfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, postName, postCode, postDesc
+    from postinfo
+  </select>
+</mapper>
